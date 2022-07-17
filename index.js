@@ -4,9 +4,10 @@ const cors = require("cors");
 const app = express();
 
 app.use(cors({
-  origin: "https://strong-pegasus-8e27e5.netlify.app",
+  origin: "https://my-movie-list-app.netlify.app",
   credentials: true,
 }));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
