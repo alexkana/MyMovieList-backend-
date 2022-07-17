@@ -8,8 +8,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // Import movie routes
 const movieRoutes = require("./routes/movieRoutes");
+// Simple route
+app.get('/',(req,res) =>{
+  res.json({message: "Welcome!"})
+})
 // create movie routes
-app.use("/api/movie",movieRoutes);
+app.use('/api/movie',movieRoutes);
 // Set port, listen for requests
 const PORT = 3001;
 app.listen(PORT, () => {
