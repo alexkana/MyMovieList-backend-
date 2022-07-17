@@ -1,6 +1,6 @@
 const dbConn = require('../config/dbConfig');
 
-//Movie class- constructor
+// Movie class - constructor
 const Movie = function(movie){
     this.title = movie.title;
     this.year = movie.year;
@@ -33,7 +33,7 @@ Movie.create = (movieData) =>{
 
 }
  
-//Update movie
+// Update movie
 Movie.update = (id,movieData) =>{
     return dbConn.execute('UPDATE heroku_84abb48472d28b4.movie SET title=?,genre=?,year=?,rating=?,imgUrl=? WHERE id=?',[movieData.title,movieData.genre,movieData.year,movieData.rating,movieData.imgUrl,id]);
 }
@@ -44,5 +44,4 @@ Movie.delete = (id)=>{
 }
 
 
- 
 module.exports = Movie;

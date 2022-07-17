@@ -3,7 +3,9 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: ["https://strong-pegasus-8e27e5.netlify.app"]
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // Import movie routes

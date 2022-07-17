@@ -1,6 +1,6 @@
 const Movie = require("../model/movieModel");
 
-//Function that gets all movies from database(get request)
+//Function that gets all movies from database (get request)
 exports.getAllMovies = async (req,res) =>{
     try{
      const [allMovies] = await Movie.getAll();
@@ -12,7 +12,7 @@ exports.getAllMovies = async (req,res) =>{
     }
 }
 
-//Function that gets a certain movie from database(get request)
+//Function that returns a movie with a certain id from the database (get request)
 exports.getMovieById = async (req,res) =>{
   try{
    const movieId = req.params.id;
@@ -25,7 +25,7 @@ exports.getMovieById = async (req,res) =>{
   }
 }
 
-//Function that adds a new movie to database(post request)
+//Function that adds a new movie to database (post request)
 exports.postMovie = async (req,res) =>{
     try{
      const data = {title:req.body.title, year:req.body.year,genre:req.body.genre,rating:req.body.rating,imgUrl:req.body.imgUrl}
@@ -37,7 +37,7 @@ exports.postMovie = async (req,res) =>{
     }
 }
 
-//Function that updates a certain movie in the databse(put request)
+//Function that updates a certain movie in the database (put request)
 exports.putMovie = async (req,res) =>{
     try{
      const movieId = req.params.id;
@@ -51,7 +51,7 @@ exports.putMovie = async (req,res) =>{
     }
 }
 
-//Function that deletes a certain movie from the database (delete request)
+//Function that deletes a movie from the database (delete request)
 exports.deleteMovie = async (req,res) =>{
   try{
    const movieId = req.params.id;
