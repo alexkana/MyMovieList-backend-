@@ -7,5 +7,4 @@ const pool = mysql.createPool({
     database: 'heroku_84abb48472d28b4'
 });
 
-
 module.exports = pool.promise();
