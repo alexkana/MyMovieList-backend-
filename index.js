@@ -10,6 +10,7 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Set up headers
 app.use((req, res, next) => { 
   res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Access-Control-Allow-Origin', '*')
@@ -23,10 +24,12 @@ app.use((req, res, next) => {
 
 // Import movie routes
 const movieRoutes = require("./routes/movieRoutes");
+
 // Simple route
 app.get('/',(req,res) =>{
   res.json({message: "Welcome!"})
 })
+
 // create movie routes
 app.use('/api/movie',movieRoutes);
 // Set port, listen for requests
