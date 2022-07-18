@@ -4,11 +4,11 @@ const Movie = require("../model/movieModel");
 exports.getAllMovies = async (req,res) =>{
     try{
      const [allMovies] = await Movie.getAll();
-     res.json(allMovies);
+     res.status(200).json(allMovies);
     }
     catch (err)
     {
-      res.json(err);
+      res.status(400).json(err);
     }
 }
 
@@ -17,37 +17,42 @@ exports.getMovieById = async (req,res) =>{
   try{
    const movieId = req.params.id;
    [selectedMovie] = await Movie.getByID(movieId);
-   res.json(selectedMovie);
+   res.status(200).json(selectedMovie);
   }
   catch (err)
   {
-    res.json(err);
+    res.status(400).json(err);
   }
 }
 
 //Function that adds a new movie to database (post request)
 exports.postMovie = async (req,res) =>{
     try{
-     const data = {title:req.body.title, year:req.body.year,genre:req.body.genre,rating:req.body.rating,imgUrl:req.body.imgUrl}
-     //const data = req.body.newMovie;
-     const postResponse = await Movie.create(data);
-     res.json(postResponse);
+     const data = {title:req.body.title, year:req.body.year,genre:req.body.genre,rating:req.body.rating,imgUrl:req.body.imgUrl};
+     const movieInfo = await Movie.getByInfotitle({title:req.body.title, year:req.body.year,genre:req.body.genre,rating:req.body.rating});
+     if (!movieInfo){
+      const postResponse = await Movie.create(data);
+      res.status(201).json(postResponse);
+     }else{
+      res.status(400).json({message:"Movie already exists!"})
+     }
     } catch (err) {
-      res.json(err);
+      res.status(400).json(err);
+
     }
 }
 
-//Function that updates a certain movie in the database (put request)
+//Function that updates a movie in the database (put request)
 exports.putMovie = async (req,res) =>{
     try{
      const movieId = req.params.id;
      const data = {title:req.body.title, year:req.body.year,genre:req.body.genre,rating:req.body.rating,imgUrl:req.body.imgUrl};
      const putResponse = await Movie.update(movieId,data);
-     res.json(putResponse);
+     res.status(200).json(putResponse);
     }
     catch (err)
     {
-      res.json(err);
+      res.status(400).json(err);
     }
 }
 
@@ -60,7 +65,7 @@ exports.deleteMovie = async (req,res) =>{
   }
   catch (err)
   {
-    res.json(err);
+    res.status(400).json(err);
   }
 }
 
