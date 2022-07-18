@@ -24,7 +24,7 @@ Movie.getByID = (id)=>{
 }
 
 Movie.getByInfo = (movieData) => {
-    return dbConn.execute('SELECT * FROM heroku_84abb48472d28b4.movie WHERE title=?,year=?,genre=?,rating=?',[movieData.title,movieData.year,movieData.genre,movieData.rating]);
+    return dbConn.execute('SELECT * FROM heroku_84abb48472d28b4.movie WHERE title=? AND year=? AND genre=? AND rating=?',[movieData.title,movieData.year,movieData.genre,movieData.rating]);
 }
  
 // Create new movie
