@@ -31,11 +31,12 @@ exports.postMovie = async (req,res) =>{
      const data = {title:req.body.title, year:req.body.year,genre:req.body.genre,rating:req.body.rating,imgUrl:req.body.imgUrl};
      const movieData = {title:req.body.title, year:req.body.year,genre:req.body.genre,rating:req.body.rating};
      const [movieInfo] = await Movie.getByInfo(movieData);
-     if (movieInfo && movieInfo.isArray() && movieInfo.length > 0){
-      res.status(400).json({message:"Movie already exists!"});
-     }else{
+     if (movieInfo.length === 0){
       const postResponse = await Movie.create(data);
       res.status(201).json(postResponse);
+     }
+      else{
+      res.status(400).json({message:"Movie already exists!"});
      }
     } catch (err) {
       res.status(400).json(err);
