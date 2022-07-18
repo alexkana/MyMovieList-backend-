@@ -30,7 +30,7 @@ exports.postMovie = async (req,res) =>{
     try{
      const data = {title:req.body.title, year:req.body.year,genre:req.body.genre,rating:req.body.rating,imgUrl:req.body.imgUrl};
      const movieInfo = await Movie.getByInfo({title:req.body.title, year:req.body.year,genre:req.body.genre,rating:req.body.rating});
-     if (!movieInfo){
+     if (!movieInfo.data){
       const postResponse = await Movie.create(data);
       res.status(201).json(postResponse);
      }else{
