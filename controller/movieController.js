@@ -48,10 +48,15 @@ exports.putMovie = async (req,res) =>{
     try{
      const movieId = req.params.id;
      const data = {title:req.body.title, year:req.body.year,genre:req.body.genre,rating:req.body.rating,imgUrl:req.body.imgUrl};
-     const putResponse = await Movie.update(movieId,data);
-     res.status(200).json(putResponse);
-    }
-    catch (err)
+     const [movieInfo] = await Movie.getByInfo(data);
+     if (movieInfo.length === 0){
+      const putResponse = await Movie.update(movieId,data);
+      res.status(200).json(putResponse);
+     }
+     else{
+       res.status(400).json("Movie already exists")
+     }  
+    }catch (err)
     {
       res.status(400).json(err);
     }
