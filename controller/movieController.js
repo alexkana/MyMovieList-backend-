@@ -1,6 +1,6 @@
 const Movie = require("../model/movieModel");
 
-//Function that gets all movies from database (get request)
+//Function that returns all movies from the database (get request)
 exports.getAllMovies = async (req,res) =>{
     try{
      const [allMovies] = await Movie.getAll();
@@ -37,7 +37,6 @@ exports.postMovie = async (req,res) =>{
      else{
        res.status(400).json("Movie already exists")
      }
-
     } catch (err) {
       res.status(400).json(err);
 

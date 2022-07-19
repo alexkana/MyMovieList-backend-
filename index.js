@@ -2,7 +2,6 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
-
 app.use(cors({
   origin: "https://my-movie-list-app.netlify.app",
   credentials: true,

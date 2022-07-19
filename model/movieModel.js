@@ -23,6 +23,7 @@ Movie.getByID = (id)=>{
     return dbConn.execute('SELECT * FROM heroku_84abb48472d28b4.movie WHERE id=(?)', [id])
 }
 
+//Get movie by info
 Movie.getByInfo = (movieData) => {
     return dbConn.execute('SELECT * FROM heroku_84abb48472d28b4.movie WHERE title=? AND year=? AND genre=? AND rating=?',[movieData.title,movieData.year,movieData.genre,movieData.rating]);
 }
@@ -42,6 +43,5 @@ Movie.update = (id,movieData) =>{
 Movie.delete = (id)=>{
     return dbConn.execute('DELETE FROM heroku_84abb48472d28b4.movie WHERE id=?', [id]);
 }
-
 
 module.exports = Movie;
